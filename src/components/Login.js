@@ -18,7 +18,7 @@ const Login = () => {
           alt="bg"
         />
       </div>
-      <form className="w-3/12 absolute my-36 mx-auto right-0 left-0 bg-black p-12 text-white bg-opacity-80">
+      <form className="w-3/12 absolute my-36 mx-auto right-0 left-0 bg-black p-12 text-white bg-opacity-80 rounded-lg">
         <h1 className="font-bold text-3xl py-4 ">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
@@ -26,20 +26,20 @@ const Login = () => {
           <input
             type="text"
             placeholder="Email address"
-            className="p-2 my-4 w-full bg-gray-700"
+            className="p-2 my-4 w-full bg-gray-700 rounded-sm"
           />
         )}
         <input
           type="text"
           placeholder="Email address"
-          className="p-2 my-4 w-full bg-gray-700"
+          className="p-2 my-4 w-full bg-gray-700 rounded-sm"
         />
         <input
           type="password"
           placeholder="password"
-          className="p-2 my-4 w-full bg-gray-700"
+          className="p-2 my-4 w-full bg-gray-700 rounded-sm"
         />
-        <button className="p-2 my-6 bg-red-700 w-full">
+        <button className="p-2 my-6 bg-red-700 w-full rounded-sm">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
         <p className="py-6 cursor-pointer" onClick={HandleToggle}>
