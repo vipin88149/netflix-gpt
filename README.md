@@ -2,6 +2,9 @@
 
 - create react app
 - configure tailwind
+- Header
+- Login Form
+- Sign Up Form
 
 # Features
 - Login/sign-up page
@@ -18,3 +21,35 @@
 - Netflix-Gpt
     - Search Bar
     - Movie suggestion
+
+# Useful Libraries
+- FORMIK (to handle large forms)
+
+# For Routing 
+- commond (npm i -D react-router-dom)
+- this is how we do Routing 
+    import React from "react";
+    import Login from "./Login";
+    import Browse from "./Browse";
+    import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+    const Body = () => {
+    const appRouter = createBrowserRouter([
+        {
+        path: "/browse",
+        element: <Browse />,
+        },
+        {
+        path: "/login",
+        element: <Login />,
+        },
+    ]);
+
+    return (
+        <div>
+        <RouterProvider router={appRouter} />
+        </div>
+    );
+    };
+
+    export default Body;
