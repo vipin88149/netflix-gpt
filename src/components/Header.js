@@ -5,12 +5,15 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
-import { LOGO } from "../utils/constants";
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
+import { toggleGptSearchView } from "../utils/GptSlice";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
   const HandleSignOut = () => {
     signOut(auth)
@@ -18,6 +21,14 @@ const Header = () => {
       .catch((error) => {
         navigate("/error");
       });
+  };
+
+  const handleGptSearchButton = () => {
+    dispatch(toggleGptSearchView());
+  };
+
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
   };
 
   useEffect(() => {
@@ -45,9 +56,26 @@ const Header = () => {
   return (
     <div className="absolute  z-10 w-full bg-gradient-to-b from-black flex justify-between">
       <img className="w-48  mx-[8rem] p-1" src={LOGO} alt="logo" />
-
       {user && (
         <div className="flex mx-8 text-white">
+          {showGptSearch && (
+            <select
+              className="p-2 bg-gray-900 text-white m-6"
+              onChange={handleLanguageChange}
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.indentifier} value={lang.indentifier}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+          <button
+            className="py-2 px-4 m-6 bg-purple-500 rounded-lg"
+            onClick={handleGptSearchButton}
+          >
+           {showGptSearch? "Home page":"Gpt search"}
+          </button>
           <img
             className="w-10 h-10 my-6 rounded-full mx-3"
             alt="usericon"
