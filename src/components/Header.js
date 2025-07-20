@@ -2,12 +2,13 @@ import { useEffect } from "react";
 import photo from "../utils/photo.png";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
 import { toggleGptSearchView } from "../utils/GptSlice";
 import { changeLanguage } from "../utils/configSlice";
+import  Chat from "./Chat"
 
 const Header = () => {
   const navigate = useNavigate();
@@ -58,6 +59,9 @@ const Header = () => {
       <img className="w-48  mx-[8rem] p-1" src={LOGO} alt="logo" />
       {user && (
         <div className="flex mx-8 text-white">
+          {showGptSearch &&(
+            <h1 className="font-bold rounded-sm p-2 my-6 bg-gray-900"><Link to="/chat">chat</Link></h1>
+          )}
           {showGptSearch && (
             <select
               className="p-2 bg-gray-900 text-white m-6"

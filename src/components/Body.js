@@ -1,6 +1,7 @@
 import Login from "./Login";
 import Browse from "./Browse";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Chat from "./Chat";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -11,6 +12,10 @@ const Body = () => {
     {
       path: "/",
       element: <Login />,
+    },
+    {
+      path:"/chat",
+      element:<Chat />
     },
   ]);
 
